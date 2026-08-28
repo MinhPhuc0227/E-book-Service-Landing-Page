@@ -107,4 +107,32 @@ body {
     focus:ring-brand-600
     dark:border-line-invert;
   } */
+
+  .price-toggle {
+    @apply inline-flex h-7 w-12 cursor-pointer items-center rounded-full
+    bg-line p-1 transition-colors
+    focus:outline-none
+    focus:ring-2
+    focus:ring-brand-600;
+  }
+
+  .price-toggle[aria-checked="true"] {
+    @apply bg-brand-600;
+  }
+
+  .price-toggle-knob {
+    @apply size-5 rounded-full bg-white transition-transform duration-200;
+  }
+
+  .price-toggle[aria-checked="true"] .price-toggle-knob {
+    transform: translateX(20px);
+  }
+
+  .reveal {
+    @apply translate-y-6 opacity-0 transition-all duration-700;
+  }
+
+  .reveal.is-visible {
+    @apply translate-y-0 opacity-100;
+  }
 }

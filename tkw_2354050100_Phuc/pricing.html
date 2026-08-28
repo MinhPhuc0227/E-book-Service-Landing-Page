@@ -10,9 +10,10 @@
       name="description"
       content="Các gói thành viên BOOKLY và bảng so sánh tính năng."
     />
+
     <link rel="stylesheet" href="./dist/output.css" />
 
-    <!-- CHỐNG NHÁY TRẮNG -->
+    <!-- Khởi tạo dark mode trước khi trình duyệt render -->
     <script>
       (() => {
         const saved = localStorage.getItem("theme");
@@ -27,8 +28,10 @@
   </head>
 
   <body>
+    <!-- Mốc để IntersectionObserver phát hiện navbar đã cuộn -->
     <div id="nav-sentinel" aria-hidden="true"></div>
-    <!-- ========== NAV BAR ========== -->
+
+    <!-- ==================== NAV BAR ==================== -->
     <header class="site-header sticky top-0 z-50">
       <nav
         aria-label="Thanh điều hướng chính"
@@ -51,58 +54,94 @@
           </span>
         </a>
 
-        <!-- Menu navbar -->
+        <!-- Menu desktop -->
         <ul class="hidden flex-1 items-center gap-8 lg:flex">
           <li>
-            <a href="index.html#hero">Trang chủ</a>
+            <a
+              href="index.html#hero"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Trang chủ
+            </a>
           </li>
 
           <li>
-            <a href="index.html#tinh-nang">Tính năng</a>
+            <a
+              href="index.html#tinh-nang"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Tính năng
+            </a>
           </li>
 
           <li>
-            <a href="index.html#so-lieu">Về BOOKLY</a>
+            <a
+              href="index.html#so-lieu"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Về BOOKLY
+            </a>
           </li>
 
           <li>
-            <a href="index.html#cam-nhan">Đánh giá</a>
+            <a
+              href="index.html#cam-nhan"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Đánh giá
+            </a>
           </li>
 
           <li>
-            <a href="pricing.html">Gói thành viên</a>
+            <a
+              href="pricing.html"
+              class="font-body text-base font-medium leading-6 transition-colors text-brand-600"
+              aria-current="page"
+            >
+              Gói thành viên
+            </a>
           </li>
 
           <li>
-            <a href="contact.html">Liên hệ</a>
+            <a
+              href="contact.html"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Liên hệ
+            </a>
           </li>
 
           <li>
-            <a href="index.html#faq">Câu hỏi thường gặp</a>
+            <a
+              href="index.html#faq"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Câu hỏi thường gặp
+            </a>
           </li>
         </ul>
 
-        <!-- Register link -->
-        <a
-          href="pricing.html"
-          class="hidden font-body h-[37px] shrink-0 items-center justify-center rounded-lg bg-brand-600 px-3 text-sm font-medium leading-[21px] text-white transition-colors hover:bg-brand-700 lg:flex"
-        >
-          Đăng ký ngay
-        </a>
-
-        <!-- Dark mode button -->
+        <!-- Dark mode -->
         <button
           id="theme-toggle"
           type="button"
           role="switch"
           aria-checked="false"
           aria-label="Chuyển sang chế độ tối"
-          class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line text-lg transition-colors hover:bg-surface-alt focus:outline-none focus:ring-2 focus:ring-brand-600"
+          class="theme-toggle"
         >
-          <span data-theme-icon aria-hidden="true"> ☾ </span>
+          <span data-theme-icon aria-hidden="true">☾</span>
         </button>
 
-        <!-- Hamburger button -->
+        <!-- Đăng ký -->
+        <a
+          href="#bang-gia"
+          class="hidden font-body h-[37px] shrink-0 items-center justify-center rounded-lg bg-brand-600 px-3 text-sm font-medium leading-[21px] text-white transition-colors hover:bg-brand-700 lg:flex"
+        >
+          Đăng ký ngay
+        </a>
+
+        <!-- Hamburger -->
         <button
           id="mobile-menu-toggle"
           type="button"
@@ -115,7 +154,7 @@
         </button>
       </nav>
 
-      <!-- MOBILE MENU -->
+      <!-- ==================== MOBILE MENU ==================== -->
       <div
         id="mobile-menu"
         class="hidden border-t border-line bg-surface dark:border-line-invert dark:bg-surface-dark lg:hidden"
@@ -123,7 +162,7 @@
         <ul class="mx-auto max-w-[1280px] px-5 py-4">
           <li>
             <a
-              href="#hero"
+              href="index.html#hero"
               class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
             >
               Trang chủ
@@ -132,7 +171,7 @@
 
           <li>
             <a
-              href="#tinh-nang"
+              href="index.html#tinh-nang"
               class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
             >
               Tính năng
@@ -141,7 +180,7 @@
 
           <li>
             <a
-              href="#so-lieu"
+              href="index.html#so-lieu"
               class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
             >
               Về BOOKLY
@@ -150,7 +189,7 @@
 
           <li>
             <a
-              href="#cam-nhan"
+              href="index.html#cam-nhan"
               class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
             >
               Đánh giá
@@ -160,7 +199,8 @@
           <li>
             <a
               href="pricing.html"
-              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium text-brand-600 transition-colors hover:bg-surface-alt"
+              aria-current="page"
             >
               Gói thành viên
             </a>
@@ -177,7 +217,7 @@
 
           <li>
             <a
-              href="#faq"
+              href="index.html#faq"
               class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
             >
               Câu hỏi thường gặp
@@ -185,7 +225,7 @@
           </li>
 
           <li class="mt-2">
-            <a href="pricing.html" class="btn btn-primary w-full">
+            <a href="#bang-gia" class="btn btn-primary w-full">
               Đăng ký ngay
             </a>
           </li>
@@ -194,91 +234,160 @@
     </header>
 
     <main id="main">
-      <!-- ========== BẢNG GIÁ ========== -->
+      <!-- ==================== BẢNG GIÁ ==================== -->
       <section
-        aria-labelledby="bang-gia-title"
         id="bang-gia"
+        aria-labelledby="bang-gia-title"
         class="mx-auto w-full max-w-6xl px-5 py-20 lg:py-28"
       >
-        <div class="text-center max-w-2xl mx-auto">
+        <div class="mx-auto max-w-2xl text-center">
           <p
             class="font-display text-xs font-semibold uppercase text-brand-600"
           >
             Gói dịch vụ
           </p>
-          <h2
+
+          <h1
             id="bang-gia-title"
             class="mt-4 text-3xl font-extrabold sm:text-4xl"
           >
             Chọn gói thành viên phù hợp
-          </h2>
+          </h1>
+
           <p class="mt-4 text-lg text-muted">
             Đăng ký một gói thành viên và bắt đầu khám phá thư viện ebook của
             BOOKLY ngay hôm nay.
           </p>
+
+          <!-- ==================== CÔNG TẮC THÁNG / NĂM ==================== -->
+          <div class="mt-8 flex items-center justify-center gap-3">
+            <span class="text-sm font-medium"> Theo tháng </span>
+
+            <button
+              type="button"
+              role="switch"
+              aria-checked="false"
+              aria-label="Đang xem giá theo tháng"
+              data-price-toggle
+              class="price-toggle"
+            >
+              <span aria-hidden="true" class="price-toggle-knob"></span>
+            </button>
+
+            <span class="text-sm font-medium"> Theo năm </span>
+          </div>
         </div>
 
-        <!-- Danh sách bảng giá -->
-        <!-- Gói cơ bản -->
+        <!-- ==================== 3 GÓI ==================== -->
         <ul class="mt-14 grid items-stretch gap-6 lg:grid-cols-3">
-          <li class="card flex h-full flex-col">
-            <h3 class="text-xl font-bold">Gói Cơ Bản</h3>
-            <p class="mt-4 text-3xl font-extrabold text-brand-600">
-              49.000 VNĐ/tháng
-            </p>
+          <!-- GÓI CƠ BẢN -->
+          <li class="card reveal" data-reveal>
+            <h2 class="text-xl font-bold">Gói Cơ Bản</h2>
+
+            <div class="mt-4">
+              <span
+                data-price
+                data-monthly="49000"
+                data-yearly="490000"
+                class="text-3xl font-extrabold text-brand-600"
+              >
+                49.000 ₫
+              </span>
+
+              <span data-price-period class="text-sm text-muted"> /tháng </span>
+            </div>
+
             <ul class="mt-6 mb-6 flex-1 space-y-3 text-muted">
               <li class="flex items-center gap-2">
                 Truy cập thư viện ebook cơ bản
               </li>
+
               <li class="flex items-center gap-2">Đọc không giới hạn</li>
+
               <li class="flex items-center gap-2">Lưu sách yêu thích</li>
             </ul>
+
             <a href="#goi-dang-ky" class="btn btn-primary mt-auto">
               Đăng ký gói Cơ Bản
             </a>
           </li>
 
-          <!-- Gói Tiêu Chuẩn (Thẻ nổi bật) -->
-          <li class="card relative flex h-full flex-col ring-2 ring-brand-600">
+          <!-- GÓI TIÊU CHUẨN -->
+          <li
+            class="card reveal relative flex h-full flex-col ring-2 ring-brand-600"
+            data-reveal
+          >
             <span
               class="badge absolute -top-3 left-6 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold text-white"
             >
               Được chọn nhiều nhất
             </span>
-            <h3 class="text-xl font-bold">Gói Tiêu Chuẩn</h3>
-            <p class="mt-4 text-3xl font-extrabold text-brand-600">
-              99.000 VNĐ/tháng
-            </p>
+
+            <h2 class="text-xl font-bold">Gói Tiêu Chuẩn</h2>
+
+            <div class="mt-4">
+              <span
+                data-price
+                data-monthly="99000"
+                data-yearly="990000"
+                class="text-3xl font-extrabold text-brand-600"
+              >
+                99.000 ₫
+              </span>
+
+              <span data-price-period class="text-sm text-muted"> /tháng </span>
+            </div>
+
             <ul class="mt-6 mb-6 flex-1 space-y-3 text-muted">
               <li class="flex items-center gap-2">
                 Truy cập toàn bộ thư viện ebook
               </li>
+
               <li class="flex items-center gap-2">Đọc không giới hạn</li>
+
               <li class="flex items-center gap-2">Đề xuất sách cá nhân hóa</li>
+
               <li class="flex items-center gap-2">
                 Đồng bộ tiến độ đọc trên các thiết bị
               </li>
             </ul>
+
             <a href="#goi-dang-ky" class="btn btn-primary mt-auto">
               Đăng ký gói Tiêu Chuẩn
             </a>
           </li>
 
-          <!-- Gói Premium -->
-          <li class="card flex h-full flex-col">
-            <h3 class="text-xl font-bold">Gói Premium</h3>
-            <p class="mt-4 text-3xl font-extrabold text-brand-600">
-              149.000 VNĐ/tháng
-            </p>
+          <!-- GÓI PREMIUM -->
+          <li class="card reveal" data-reveal>
+            <h2 class="text-xl font-bold">Gói Premium</h2>
+
+            <div class="mt-4">
+              <span
+                data-price
+                data-monthly="149000"
+                data-yearly="1490000"
+                class="text-3xl font-extrabold text-brand-600"
+              >
+                149.000 ₫
+              </span>
+
+              <span data-price-period class="text-sm text-muted"> /tháng </span>
+            </div>
+
             <ul class="mt-6 mb-6 flex-1 space-y-3 text-muted">
               <li class="flex items-center gap-2">
                 Truy cập toàn bộ thư viện ebook
               </li>
+
               <li class="flex items-center gap-2">Đọc không giới hạn</li>
+
               <li class="flex items-center gap-2">Đề xuất sách cá nhân hóa</li>
+
               <li class="flex items-center gap-2">Nội dung độc quyền</li>
+
               <li class="flex items-center gap-2">Ưu tiên truy cập sách mới</li>
             </ul>
+
             <a href="#goi-dang-ky" class="btn btn-primary mt-auto">
               Đăng ký gói Premium
             </a>
@@ -286,7 +395,7 @@
         </ul>
       </section>
 
-      <!-- ========== BẢNG SO SÁNH ========== -->
+      <!-- ==================== BẢNG SO SÁNH ==================== -->
       <section class="section pt-0">
         <div class="max-w-2xl">
           <p class="eyebrow">So sánh</p>
@@ -355,7 +464,7 @@
         </div>
       </section>
 
-      <!-- ========== FAQ THANH TOÁN ========== -->
+      <!-- ==================== FAQ THANH TOÁN ==================== -->
       <section id="faq-payment" data-faq class="section pt-0">
         <div class="max-w-2xl">
           <p class="eyebrow">Thanh toán</p>
@@ -366,6 +475,7 @@
         </div>
 
         <div class="mt-10 max-w-3xl space-y-4">
+          <!-- FAQ 1 -->
           <details class="rounded-card border border-line p-5">
             <summary
               data-faq-trigger
@@ -380,6 +490,7 @@
             </p>
           </details>
 
+          <!-- FAQ 2 -->
           <details class="rounded-card border border-line p-5">
             <summary
               data-faq-trigger
@@ -394,6 +505,7 @@
             </p>
           </details>
 
+          <!-- FAQ 3 -->
           <details class="rounded-card border border-line p-5">
             <summary
               data-faq-trigger
@@ -409,16 +521,16 @@
       </section>
     </main>
 
-    <!-- 10. FOOTER (Bốn cột)-->
+    <!-- ==================== FOOTER ==================== -->
     <footer
       class="site-footer border-t border-line pt-16 pb-12 text-sm text-muted"
     >
       <div class="mx-auto max-w-6xl px-5">
         <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <!-- Cột 1: Logo & Mô tả ngắn -->
+          <!-- Cột 1 -->
           <div>
             <a
-              href="#hero"
+              href="index.html#hero"
               aria-label="BOOKLY - Trang chủ"
               class="flex items-center gap-3"
             >
@@ -427,87 +539,116 @@
                 alt="BOOKLY"
                 class="h-8 w-auto object-contain"
               />
-              <span class="font-body text-xl font-semibold">BOOKLY</span>
+
+              <span class="font-body text-xl font-semibold"> BOOKLY </span>
             </a>
+
             <p class="mt-4 text-muted leading-relaxed">
               Nền tảng đọc sách ebook trực tuyến hàng đầu, mang tri thức đến mọi
               nơi trong tầm tay bạn.
             </p>
           </div>
 
-          <!-- Cột 2: Nhóm liên kết sản phẩm -->
+          <!-- Cột 2 -->
           <nav aria-labelledby="footer-product-title">
             <h3 id="footer-product-title" class="font-bold">Sản phẩm</h3>
+
             <ul class="mt-4 space-y-2.5">
               <li>
-                <a href="#hero" class="transition hover:text-brand-600"
-                  >Trang chủ</a
+                <a
+                  href="index.html#hero"
+                  class="transition hover:text-brand-600"
                 >
+                  Trang chủ
+                </a>
               </li>
+
               <li>
-                <a href="#tinh-nang" class="transition hover:text-brand-600"
-                  >Tính năng</a
+                <a
+                  href="index.html#tinh-nang"
+                  class="transition hover:text-brand-600"
                 >
+                  Tính năng
+                </a>
               </li>
+
               <li>
-                <a href="#bang-gia" class="transition hover:text-brand-600"
-                  >Gói thành viên</a
-                >
+                <a href="#bang-gia" class="transition hover:text-brand-600">
+                  Gói thành viên
+                </a>
               </li>
+
               <li>
-                <a href="#so-lieu" class="transition hover:text-brand-600"
-                  >Về BOOKLY</a
+                <a
+                  href="index.html#so-lieu"
+                  class="transition hover:text-brand-600"
                 >
+                  Về BOOKLY
+                </a>
               </li>
             </ul>
           </nav>
 
-          <!-- Cột 3: Nhóm liên kết hỗ trợ -->
+          <!-- Cột 3 -->
           <nav aria-labelledby="footer-support-title">
             <h3 id="footer-support-title" class="font-bold">Hỗ trợ</h3>
+
             <ul class="mt-4 space-y-2.5">
               <li>
-                <a href="#faq" class="transition hover:text-brand-600"
-                  >Câu hỏi thường gặp</a
+                <a
+                  href="index.html#faq"
+                  class="transition hover:text-brand-600"
                 >
+                  Câu hỏi thường gặp
+                </a>
               </li>
+
               <li>
-                <a href="#cam-nhan" class="transition hover:text-brand-600"
-                  >Đánh giá độc giả</a
+                <a
+                  href="index.html#cam-nhan"
+                  class="transition hover:text-brand-600"
                 >
+                  Đánh giá độc giả
+                </a>
               </li>
+
               <li>
-                <a href="#goi-dang-ky" class="transition hover:text-brand-600"
-                  >Đăng ký ngay</a
-                >
+                <a href="#bang-gia" class="transition hover:text-brand-600">
+                  Đăng ký ngay
+                </a>
               </li>
             </ul>
           </nav>
 
-          <!-- Cột 4: Địa chỉ liên hệ -->
+          <!-- Cột 4 -->
           <section aria-labelledby="lien-he-title">
             <h3 id="lien-he-title" class="font-bold">Liên hệ</h3>
+
             <address class="mt-4 space-y-2.5 not-italic">
               <p>272 Nguyễn Ảnh Thủ, Hóc Môn, TP. Hồ Chí Minh</p>
+
               <p>
                 <a
                   href="tel:+84123456789"
                   class="transition hover:text-brand-600"
-                  >+84 123 456 789</a
                 >
+                  +84 123 456 789
+                </a>
               </p>
+
               <p>
                 <a
                   href="mailto:contact@bookly.vn"
                   class="transition hover:text-brand-600"
-                  >contact@bookly.vn</a
                 >
+                  contact@bookly.vn
+                </a>
               </p>
             </address>
           </section>
         </div>
 
-        <!-- Dòng Copyright -->
+        <!-- Copyright -->
         <div
           class="mt-12 border-t border-line pt-6 text-center text-xs text-muted"
         >
@@ -515,16 +656,18 @@
         </div>
       </div>
     </footer>
-    <!-- Nút lên đầu trang -->
+
+    <!-- Lên đầu trang -->
     <button
       id="to-top"
       type="button"
-      class="fixed bottom-6 right-6 z-40 hidden size-12 rounded-full bg-brand-600 text-white shadow-lg transition hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2"
+      class="to-top hidden"
       aria-label="Lên đầu trang"
     >
       ↑
     </button>
-    <!-- Javasript file -->
+
+    <!-- JS -->
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>
