@@ -471,51 +471,103 @@
         id="cam-nhan"
         class="mx-auto w-full max-w-6xl px-5 py-20 lg:py-28"
       >
-        <div class="text-center max-w-2xl mx-auto">
+        <div class="mx-auto max-w-2xl text-center">
           <h2 id="cam-nhan-title" class="text-3xl font-extrabold sm:text-4xl">
             Độc giả nói gì về BOOKLY
           </h2>
         </div>
 
-        <div class="mt-14 grid gap-8 md:grid-cols-3">
-          <figure class="card reveal" data-reveal>
-            <blockquote class="text-muted leading-relaxed">
-              "BOOKLY giúp tôi đọc sách thuận tiện hơn rất nhiều. Tôi có thể đọc
-              ngay trên điện thoại khi có thời gian rảnh."
-            </blockquote>
-            <figcaption class="mt-6 flex flex-col">
-              <span class="font-bold">Nguyễn Gia Hân</span>
-              <cite class="not-italic text-sm text-muted"
-                >Gia sư ưu tú năm 2025</cite
+        <!-- Slider -->
+        <div
+          id="testimonial-slider"
+          class="relative mt-14"
+          aria-roledescription="carousel"
+          aria-label="Cảm nhận của độc giả"
+        >
+          <!-- Khu vực slider -->
+          <div class="mx-12 sm:mx-14">
+            <div class="overflow-hidden">
+              <div
+                data-slider-track
+                class="flex transition-transform duration-500 ease-in-out"
               >
-            </figcaption>
-          </figure>
+                <!-- Slide 1 -->
+                <figure data-slide class="card shrink-0">
+                  <blockquote class="text-muted leading-relaxed">
+                    "BOOKLY giúp tôi đọc sách thuận tiện hơn rất nhiều. Tôi có
+                    thể đọc ngay trên điện thoại khi có thời gian rảnh."
+                  </blockquote>
 
-          <figure class="card reveal" data-reveal>
-            <blockquote class="text-muted leading-relaxed">
-              "Kho sách đa dạng và dễ tìm kiếm. Tôi đặc biệt thích tính năng đề
-              xuất sách cá nhân hóa."
-            </blockquote>
-            <figcaption class="mt-6 flex flex-col">
-              <span class="font-bold">Nguyễn Ngọc Quý</span>
-              <cite class="not-italic text-sm text-muted"
-                >Nhà truyền cảm hứng cho giới trẻ</cite
-              >
-            </figcaption>
-          </figure>
+                  <figcaption class="mt-6 flex flex-col">
+                    <span class="font-bold"> Nguyễn Gia Hân </span>
 
-          <figure class="card reveal" data-reveal>
-            <blockquote class="text-muted leading-relaxed">
-              "Gói thành viên phù hợp với nhu cầu của tôi. Tôi có thể đọc nhiều
-              sách mà không cần mua từng cuốn."
-            </blockquote>
-            <figcaption class="mt-6 flex flex-col">
-              <span class="font-bold">Lê Hữu Phúc</span>
-              <cite class="not-italic text-sm text-muted"
-                >Độc giả năng suất của trang</cite
-              >
-            </figcaption>
-          </figure>
+                    <cite class="not-italic text-sm text-muted">
+                      Gia sư ưu tú năm 2025
+                    </cite>
+                  </figcaption>
+                </figure>
+
+                <!-- Slide 2 -->
+                <figure data-slide class="card shrink-0">
+                  <blockquote class="text-muted leading-relaxed">
+                    "Kho sách đa dạng và dễ tìm kiếm. Tôi đặc biệt thích tính
+                    năng đề xuất sách cá nhân hóa."
+                  </blockquote>
+
+                  <figcaption class="mt-6 flex flex-col">
+                    <span class="font-bold"> Nguyễn Ngọc Quý </span>
+
+                    <cite class="not-italic text-sm text-muted">
+                      Nhà truyền cảm hứng cho giới trẻ
+                    </cite>
+                  </figcaption>
+                </figure>
+
+                <!-- Slide 3 -->
+                <figure data-slide class="card shrink-0">
+                  <blockquote class="text-muted leading-relaxed">
+                    "Gói thành viên phù hợp với nhu cầu của tôi. Tôi có thể đọc
+                    nhiều sách mà không cần mua từng cuốn."
+                  </blockquote>
+
+                  <figcaption class="mt-6 flex flex-col">
+                    <span class="font-bold"> Lê Hữu Phúc </span>
+
+                    <cite class="not-italic text-sm text-muted">
+                      Độc giả năng suất của trang
+                    </cite>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nút Previous -->
+          <button
+            type="button"
+            data-slider-prev
+            class="absolute left-0 top-1/2 z-10 -translate-y-1/2 inline-flex size-10 items-center justify-center rounded-full border border-line bg-surface text-lg shadow-md transition hover:bg-surface-alt focus:outline-none focus:ring-2 focus:ring-brand-600 dark:border-line-invert dark:bg-surface-dark"
+            aria-label="Cảm nhận trước"
+          >
+            ←
+          </button>
+
+          <!-- Nút Next -->
+          <button
+            type="button"
+            data-slider-next
+            class="absolute right-0 top-1/2 z-10 -translate-y-1/2 inline-flex size-10 items-center justify-center rounded-full border border-line bg-surface text-lg shadow-md transition hover:bg-surface-alt focus:outline-none focus:ring-2 focus:ring-brand-600 dark:border-line-invert dark:bg-surface-dark"
+            aria-label="Cảm nhận tiếp theo"
+          >
+            →
+          </button>
+
+          <!-- Dots -->
+          <div
+            data-slider-dots
+            class="mt-6 flex justify-center gap-2"
+            aria-label="Chọn cảm nhận"
+          ></div>
         </div>
       </section>
 
