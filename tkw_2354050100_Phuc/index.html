@@ -9,9 +9,23 @@
       content="BOOKLY là nền tảng đọc ebook trực tuyến với kho sách phong phú và các gói thành viên linh hoạt."
     />
     <link rel="stylesheet" href="./dist/output.css" />
+
+    <!-- CHỐNG NHÁY TRẮNG -->
+    <script>
+      (() => {
+        const saved = localStorage.getItem("theme");
+
+        const dark = saved
+          ? saved === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        document.documentElement.classList.toggle("dark", dark);
+      })();
+    </script>
   </head>
 
-  <body class="dark:bg-surface-dark dark:text-ink-invert">
+  <body>
+    <div id="nav-sentinel" aria-hidden="true"></div>
     <!-- 1. NAV BAR -->
     <header class="site-header sticky top-0 z-50">
       <nav
@@ -109,15 +123,107 @@
           Đăng ký ngay
         </a>
 
+        <!-- Dark mode button -->
+        <button
+          id="theme-toggle"
+          type="button"
+          role="switch"
+          aria-checked="false"
+          aria-label="Chuyển sang chế độ tối"
+          class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line text-lg transition-colors hover:bg-surface-alt focus:outline-none focus:ring-2 focus:ring-brand-600"
+        >
+          <span data-theme-icon aria-hidden="true"> ☾ </span>
+        </button>
+
         <!-- Hamburger button -->
         <button
+          id="mobile-menu-toggle"
           type="button"
           class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line lg:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
           aria-label="Mở menu"
         >
           <span aria-hidden="true" class="text-xl">☰</span>
         </button>
       </nav>
+
+      <!-- MOBILE MENU -->
+      <div
+        id="mobile-menu"
+        class="hidden border-t border-line bg-surface dark:border-line-invert dark:bg-surface-dark lg:hidden"
+      >
+        <ul class="mx-auto max-w-[1280px] px-5 py-4">
+          <li>
+            <a
+              href="#hero"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Trang chủ
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#tinh-nang"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Tính năng
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#so-lieu"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Về BOOKLY
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#cam-nhan"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Đánh giá
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="pricing.html"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Gói thành viên
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="contact.html"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Liên hệ
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#faq"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Câu hỏi thường gặp
+            </a>
+          </li>
+
+          <li class="mt-2">
+            <a href="pricing.html" class="btn btn-primary w-full">
+              Đăng ký ngay
+            </a>
+          </li>
+        </ul>
+      </div>
     </header>
 
     <main id="main">
@@ -507,8 +613,9 @@
 
       <!-- 8. FAQ (câu hỏi thường gặp) -->
       <section
-        aria-labelledby="faq-title"
         id="faq"
+        data-faq
+        aria-labelledby="faq-title"
         class="mx-auto w-full max-w-6xl px-5 py-20 lg:py-28"
       >
         <div class="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
@@ -534,6 +641,8 @@
               class="group rounded-xl border border-line p-5 [&_summary::-webkit-details-marker]:hidden"
             >
               <summary
+                data-faq-trigger
+                aria-expanded="false"
                 class="flex cursor-pointer items-center justify-between font-semibold"
               >
                 <span>BOOKLY là gì?</span>
@@ -552,6 +661,8 @@
               class="group rounded-xl border border-line p-5 [&_summary::-webkit-details-marker]:hidden"
             >
               <summary
+                data-faq-trigger
+                aria-expanded="false"
                 class="flex cursor-pointer items-center justify-between font-semibold"
               >
                 <span>Tôi có thể đọc sách trên thiết bị nào?</span>
@@ -569,6 +680,8 @@
               class="group rounded-xl border border-line p-5 [&_summary::-webkit-details-marker]:hidden"
             >
               <summary
+                data-faq-trigger
+                aria-expanded="false"
                 class="flex cursor-pointer items-center justify-between font-semibold"
               >
                 <span>Tôi có thể hủy gói thành viên không?</span>
@@ -586,6 +699,8 @@
               class="group rounded-xl border border-line p-5 [&_summary::-webkit-details-marker]:hidden"
             >
               <summary
+                data-faq-trigger
+                aria-expanded="false"
                 class="flex cursor-pointer items-center justify-between font-semibold"
               >
                 <span>Tôi có thể đăng ký nhiều gói cùng lúc không?</span>

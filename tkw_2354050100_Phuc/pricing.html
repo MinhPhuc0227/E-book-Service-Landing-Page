@@ -11,9 +11,23 @@
       content="Các gói thành viên BOOKLY và bảng so sánh tính năng."
     />
     <link rel="stylesheet" href="./dist/output.css" />
+
+    <!-- CHỐNG NHÁY TRẮNG -->
+    <script>
+      (() => {
+        const saved = localStorage.getItem("theme");
+
+        const dark = saved
+          ? saved === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        document.documentElement.classList.toggle("dark", dark);
+      })();
+    </script>
   </head>
 
-  <body class="body">
+  <body>
+    <div id="nav-sentinel" aria-hidden="true"></div>
     <!-- ========== NAV BAR ========== -->
     <header class="site-header sticky top-0 z-50">
       <nav
@@ -40,66 +54,31 @@
         <!-- Menu navbar -->
         <ul class="hidden flex-1 items-center gap-8 lg:flex">
           <li>
-            <a
-              href="#hero"
-              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
-            >
-              Trang chủ
-            </a>
+            <a href="index.html#hero">Trang chủ</a>
           </li>
 
           <li>
-            <a
-              href="#tinh-nang"
-              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
-            >
-              Tính năng
-            </a>
+            <a href="index.html#tinh-nang">Tính năng</a>
           </li>
 
           <li>
-            <a
-              href="#so-lieu"
-              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
-            >
-              Về BOOKLY
-            </a>
+            <a href="index.html#so-lieu">Về BOOKLY</a>
           </li>
 
           <li>
-            <a
-              href="#cam-nhan"
-              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
-            >
-              Đánh giá
-            </a>
+            <a href="index.html#cam-nhan">Đánh giá</a>
           </li>
 
           <li>
-            <a
-              href="pricing.html"
-              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
-            >
-              Gói thành viên
-            </a>
+            <a href="pricing.html">Gói thành viên</a>
           </li>
 
           <li>
-            <a
-              href="contact.html"
-              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
-            >
-              Liên hệ
-            </a>
+            <a href="contact.html">Liên hệ</a>
           </li>
 
           <li>
-            <a
-              href="#faq"
-              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
-            >
-              Câu hỏi thường gặp
-            </a>
+            <a href="index.html#faq">Câu hỏi thường gặp</a>
           </li>
         </ul>
 
@@ -111,15 +90,107 @@
           Đăng ký ngay
         </a>
 
+        <!-- Dark mode button -->
+        <button
+          id="theme-toggle"
+          type="button"
+          role="switch"
+          aria-checked="false"
+          aria-label="Chuyển sang chế độ tối"
+          class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line text-lg transition-colors hover:bg-surface-alt focus:outline-none focus:ring-2 focus:ring-brand-600"
+        >
+          <span data-theme-icon aria-hidden="true"> ☾ </span>
+        </button>
+
         <!-- Hamburger button -->
         <button
+          id="mobile-menu-toggle"
           type="button"
           class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line lg:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
           aria-label="Mở menu"
         >
           <span aria-hidden="true" class="text-xl">☰</span>
         </button>
       </nav>
+
+      <!-- MOBILE MENU -->
+      <div
+        id="mobile-menu"
+        class="hidden border-t border-line bg-surface dark:border-line-invert dark:bg-surface-dark lg:hidden"
+      >
+        <ul class="mx-auto max-w-[1280px] px-5 py-4">
+          <li>
+            <a
+              href="#hero"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Trang chủ
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#tinh-nang"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Tính năng
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#so-lieu"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Về BOOKLY
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#cam-nhan"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Đánh giá
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="pricing.html"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Gói thành viên
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="contact.html"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Liên hệ
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#faq"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium transition-colors hover:bg-surface-alt hover:text-brand-600"
+            >
+              Câu hỏi thường gặp
+            </a>
+          </li>
+
+          <li class="mt-2">
+            <a href="pricing.html" class="btn btn-primary w-full">
+              Đăng ký ngay
+            </a>
+          </li>
+        </ul>
+      </div>
     </header>
 
     <main id="main">
@@ -285,7 +356,7 @@
       </section>
 
       <!-- ========== FAQ THANH TOÁN ========== -->
-      <section class="section pt-0">
+      <section id="faq-payment" data-faq class="section pt-0">
         <div class="max-w-2xl">
           <p class="eyebrow">Thanh toán</p>
 
@@ -296,7 +367,11 @@
 
         <div class="mt-10 max-w-3xl space-y-4">
           <details class="rounded-card border border-line p-5">
-            <summary class="cursor-pointer font-semibold">
+            <summary
+              data-faq-trigger
+              aria-expanded="false"
+              class="cursor-pointer font-semibold"
+            >
               Tôi có thể hủy gói bất cứ lúc nào không?
             </summary>
 
@@ -306,7 +381,11 @@
           </details>
 
           <details class="rounded-card border border-line p-5">
-            <summary class="cursor-pointer font-semibold">
+            <summary
+              data-faq-trigger
+              aria-expanded="false"
+              class="cursor-pointer font-semibold"
+            >
               Tôi có thể đổi gói sau khi đăng ký không?
             </summary>
 
@@ -316,7 +395,11 @@
           </details>
 
           <details class="rounded-card border border-line p-5">
-            <summary class="cursor-pointer font-semibold">
+            <summary
+              data-faq-trigger
+              aria-expanded="false"
+              class="cursor-pointer font-semibold"
+            >
               Gói thành viên được tính phí như thế nào?
             </summary>
 
