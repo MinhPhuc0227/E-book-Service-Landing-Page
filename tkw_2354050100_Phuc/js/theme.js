@@ -1,3 +1,4 @@
+// Dark mode
 const THEME_KEY = "theme";
 
 export function initTheme() {

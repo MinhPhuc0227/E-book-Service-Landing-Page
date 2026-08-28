@@ -1,3 +1,4 @@
+// FAQ, PAYMENT FAQ
 export function initFaq() {
   const roots = document.querySelectorAll("[data-faq]");
 
