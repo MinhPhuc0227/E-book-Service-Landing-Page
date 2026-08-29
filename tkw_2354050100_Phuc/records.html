@@ -203,58 +203,6 @@
           </p>
         </div>
 
-        <!-- Search + filter -->
-        <div class="card mt-10">
-          <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <label class="field-label" for="record-search">
-                Tìm kiếm người giao dịch
-              </label>
-
-              <input
-                id="record-search"
-                type="search"
-                class="field-input"
-                placeholder="Ví dụ: Chú Bảy"
-                autocomplete="off"
-              />
-            </div>
-
-            <div>
-              <label class="field-label" for="category-filter">
-                Nhóm hàng
-              </label>
-
-              <select id="category-filter" class="field-input">
-                <option value="all">Tất cả</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="field-label" for="status-filter">
-                Trạng thái
-              </label>
-
-              <select id="status-filter" class="field-input">
-                <option value="all">Tất cả</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="field-label" for="sort-select"> Sắp xếp </label>
-
-              <select id="sort-select" class="field-input">
-                <option value="date-desc">Ngày mới nhất</option>
-                <option value="date-asc">Ngày cũ nhất</option>
-                <option value="amount-desc">Số tiền cao nhất</option>
-                <option value="amount-asc">Số tiền thấp nhất</option>
-                <option value="weight-desc">Khối lượng cao nhất</option>
-                <option value="weight-asc">Khối lượng thấp nhất</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
         <!-- Add record -->
         <form id="record-form" class="card mt-6" novalidate>
           <div>
@@ -359,8 +307,8 @@
 
         <!-- Result -->
         <div class="mt-8">
-          <div class="mb-4 flex items-center justify-between gap-4">
-            <h2 class="text-xl font-bold">Danh sách</h2>
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-4">
+            <h2 class="text-xl font-bold">Danh sách ebook</h2>
 
             <button id="restore-records" type="button" class="btn btn-ghost">
               Khôi phục dữ liệu mẫu
@@ -369,6 +317,170 @@
 
           <div id="records-status" role="status" aria-live="polite"></div>
 
+          <!-- Form thêm sách -->
+          <form id="record-form" class="card mt-6">
+            <div>
+              <h2 class="text-xl font-bold">Thêm sách</h2>
+
+              <p class="mt-1 text-sm text-muted">
+                Thêm một ebook mới vào thư viện BOOKLY.
+              </p>
+            </div>
+
+            <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div>
+                <label for="record-title" class="field-label"> Tên sách </label>
+
+                <input
+                  id="record-title"
+                  name="title"
+                  type="text"
+                  class="field-input"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="record-author" class="field-label"> Tác giả </label>
+
+                <input
+                  id="record-author"
+                  name="author"
+                  type="text"
+                  class="field-input"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="record-category" class="field-label">
+                  Thể loại
+                </label>
+
+                <input
+                  id="record-category"
+                  name="category"
+                  type="text"
+                  class="field-input"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="record-status" class="field-label">
+                  Trạng thái
+                </label>
+
+                <select
+                  id="record-status"
+                  name="status"
+                  class="field-input"
+                  required
+                >
+                  <option value="available">Có sẵn</option>
+                  <option value="limited">Giới hạn</option>
+                  <option value="unavailable">Không có sẵn</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="record-views" class="field-label"> Lượt xem </label>
+
+                <input
+                  id="record-views"
+                  name="views"
+                  type="number"
+                  min="0"
+                  class="field-input"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="record-price" class="field-label"> Giá </label>
+
+                <input
+                  id="record-price"
+                  name="price"
+                  type="number"
+                  min="0"
+                  class="field-input"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="record-date" class="field-label">
+                  Ngày cập nhật
+                </label>
+
+                <input
+                  id="record-date"
+                  name="date"
+                  type="date"
+                  class="field-input"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-6">
+              Thêm sách
+            </button>
+          </form>
+
+          <!-- Search + filter -->
+          <div class="card mt-10">
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <label class="field-label" for="record-search">
+                  Tìm kiếm người giao dịch
+                </label>
+
+                <input
+                  id="record-search"
+                  type="search"
+                  class="field-input"
+                  placeholder="Ví dụ: Chú Bảy"
+                  autocomplete="off"
+                />
+              </div>
+
+              <div>
+                <label class="field-label" for="category-filter">
+                  Nhóm hàng
+                </label>
+
+                <select id="category-filter" class="field-input">
+                  <option value="all">Tất cả</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="field-label" for="status-filter">
+                  Trạng thái
+                </label>
+
+                <select id="status-filter" class="field-input">
+                  <option value="all">Tất cả</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="field-label" for="sort-select"> Sắp xếp </label>
+
+                <select id="sort-select" class="field-input">
+                  <option value="date-desc">Ngày mới nhất</option>
+                  <option value="date-asc">Ngày cũ nhất</option>
+                  <option value="amount-desc">Số tiền cao nhất</option>
+                  <option value="amount-asc">Số tiền thấp nhất</option>
+                  <option value="weight-desc">Khối lượng cao nhất</option>
+                  <option value="weight-asc">Khối lượng thấp nhất</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
           <div
             class="mt-4 overflow-x-auto rounded-card border border-line dark:border-line-invert"
           >
@@ -376,11 +488,12 @@
               <thead class="bg-surface-alt">
                 <tr class="border-b border-line dark:border-line-invert">
                   <th class="p-4 font-semibold">ID</th>
-                  <th class="p-4 font-semibold">Người giao dịch</th>
-                  <th class="p-4 font-semibold">Nhóm hàng</th>
+                  <th class="p-4 font-semibold">Tên sách</th>
+                  <th class="p-4 font-semibold">Tác giả</th>
+                  <th class="p-4 font-semibold">Thể loại</th>
                   <th class="p-4 font-semibold">Trạng thái</th>
-                  <th class="p-4 font-semibold">Khối lượng</th>
-                  <th class="p-4 font-semibold">Số tiền</th>
+                  <th class="p-4 font-semibold">Lượt xem</th>
+                  <th class="p-4 font-semibold">Giá</th>
                   <th class="p-4 font-semibold">Ngày</th>
                   <th class="p-4 font-semibold">Thao tác</th>
                 </tr>
@@ -397,12 +510,21 @@
     <template id="record-row-template">
       <tr class="border-b border-line dark:border-line-invert">
         <td data-cell="id" class="p-4"></td>
-        <td data-cell="trader" class="p-4"></td>
+
+        <td data-cell="title" class="p-4"></td>
+
+        <td data-cell="author" class="p-4"></td>
+
         <td data-cell="category" class="p-4"></td>
+
         <td data-cell="status" class="p-4"></td>
-        <td data-cell="weight" class="p-4"></td>
-        <td data-cell="amount" class="p-4"></td>
+
+        <td data-cell="views" class="p-4"></td>
+
+        <td data-cell="price" class="p-4"></td>
+
         <td data-cell="date" class="p-4"></td>
+
         <td data-cell="actions" class="p-4"></td>
       </tr>
     </template>

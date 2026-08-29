@@ -12,24 +12,21 @@ const state = {
 
 const sorters = {
   "date-desc": (a, b) => b.date.localeCompare(a.date),
+
   "date-asc": (a, b) => a.date.localeCompare(b.date),
 
-  "amount-desc": (a, b) => b.amount - a.amount,
-  "amount-asc": (a, b) => a.amount - b.amount,
+  "views-desc": (a, b) => b.views - a.views,
 
-  "weight-desc": (a, b) => b.weight - a.weight,
-  "weight-asc": (a, b) => a.weight - b.weight,
+  "views-asc": (a, b) => a.views - b.views,
+
+  "price-desc": (a, b) => b.price - a.price,
+
+  "price-asc": (a, b) => a.price - b.price,
 };
 
 const amountFormatter = new Intl.NumberFormat("vi-VN");
 
-const statusLabels = {
-  moi: "Mới",
-  "dang-xu-ly": "Đang xử lý",
-  "da-chot": "Đã chốt",
-};
-
-function getStorageRecords() {
+function getStoredRecords() {
   const raw = localStorage.getItem(RECORDS_STORAGE_KEY);
 
   if (!raw) {
@@ -37,9 +34,9 @@ function getStorageRecords() {
   }
 
   try {
-    const parsed = JSON.parse(raw);
+    const records = JSON.parse(raw);
 
-    return Array.isArray(parsed) ? parsed : null;
+    return Array.isArray(records) ? records : null;
   } catch {
     return null;
   }
@@ -50,7 +47,7 @@ function saveRecords(records) {
 }
 
 async function loadRecords() {
-  const storedRecords = getStorageRecords();
+  const storedRecords = getStoredRecords();
 
   // Những lần sau đọc trực tiếp từ localStorage
   if (storedRecords) {
@@ -81,15 +78,73 @@ function visibleRecords() {
   const query = state.query.trim().toLowerCase();
 
   return [...state.records]
-    .filter(
-      (record) =>
-        state.category === "all" || record.category === state.category,
-    )
-    .filter(
-      (record) => state.status === "all" || record.status === state.status,
-    )
-    .filter((record) => !query || record.trader.toLowerCase().includes(query))
+    .filter((record) => {
+      if (!query) {
+        return true;
+      }
+
+      return (
+        record.title.toLowerCase().includes(query) ||
+        record.author.toLowerCase().includes(query)
+      );
+    })
+    .filter((record) => {
+      return state.category === "all" || record.category === state.category;
+    })
+    .filter((record) => {
+      return state.status === "all" || record.status === state.status;
+    })
     .sort(sorters[state.sort]);
+}
+
+function renderFilters() {
+  const categoryFilter = document.getElementById("category-filter");
+
+  const statusFilter = document.getElementById("status-filter");
+
+  categoryFilter.replaceChildren();
+
+  const categoryAll = document.createElement("option");
+
+  categoryAll.value = "all";
+  categoryAll.textContent = "Tất cả thể loại";
+
+  categoryFilter.append(categoryAll);
+
+  const categories = [
+    ...new Set(state.records.map((record) => record.category)),
+  ].sort((a, b) => a.localeCompare(b, "vi"));
+
+  categories.forEach((category) => {
+    const option = document.createElement("option");
+
+    option.value = category;
+    option.textContent = category;
+
+    categoryFilter.append(option);
+  });
+
+  categoryFilter.value = state.category;
+
+  statusFilter.replaceChildren();
+
+  const statusAll = document.createElement("option");
+
+  statusAll.value = "all";
+  statusAll.textContent = "Tất cả trạng thái";
+
+  statusFilter.append(statusAll);
+
+  Object.entries(statusLabels).forEach(([value, label]) => {
+    const option = document.createElement("option");
+
+    option.value = value;
+    option.textContent = label;
+
+    statusFilter.append(option);
+  });
+
+  statusFilter.value = state.status;
 }
 
 function getCategories() {
@@ -125,6 +180,12 @@ function createSkeletonRow() {
   return row;
 }
 
+const statusLabels = {
+  available: "Có sẵn",
+  limited: "Giới hạn",
+  unavailable: "Không có sẵn",
+};
+
 function buildRow(record) {
   const template = document.getElementById("record-row-template");
 
@@ -132,75 +193,41 @@ function buildRow(record) {
 
   row.querySelector("[data-cell='id']").textContent = record.id;
 
-  row.querySelector("[data-cell='trader']").textContent = record.trader;
+  row.querySelector("[data-cell='title']").textContent = record.title;
+
+  row.querySelector("[data-cell='author']").textContent = record.author;
 
   row.querySelector("[data-cell='category']").textContent = record.category;
 
   row.querySelector("[data-cell='status']").textContent =
     statusLabels[record.status] ?? record.status;
 
-  row.querySelector("[data-cell='weight']").textContent = `${record.weight} kg`;
+  row.querySelector("[data-cell='views']").textContent =
+    record.views.toLocaleString("vi-VN");
 
-  row.querySelector("[data-cell='amount']").textContent =
-    `${amountFormatter.format(record.amount)} VNĐ`;
+  row.querySelector("[data-cell='price']").textContent =
+    `${record.price.toLocaleString("vi-VN")} VNĐ`;
 
   row.querySelector("[data-cell='date']").textContent = record.date;
 
   const deleteButton = document.createElement("button");
 
   deleteButton.type = "button";
+
   deleteButton.dataset.action = "delete";
+
   deleteButton.dataset.id = record.id;
+
   deleteButton.className =
     "btn border border-red-300 text-red-600 hover:bg-red-50";
+
   deleteButton.textContent = "Xóa";
-  deleteButton.setAttribute("aria-label", `Xóa bản ghi ${record.id}`);
+
+  deleteButton.setAttribute("aria-label", `Xóa sách ${record.title}`);
 
   row.querySelector("[data-cell='actions']").append(deleteButton);
 
   return row;
-}
-
-function renderFilters() {
-  const categoryFilter = document.getElementById("category-filter");
-
-  const statusFilter = document.getElementById("status-filter");
-
-  categoryFilter.replaceChildren();
-
-  const categoryAll = document.createElement("option");
-  categoryAll.value = "all";
-  categoryAll.textContent = "Tất cả";
-  categoryFilter.append(categoryAll);
-
-  getCategories().forEach((category) => {
-    const option = document.createElement("option");
-
-    option.value = category;
-    option.textContent = category;
-
-    categoryFilter.append(option);
-  });
-
-  categoryFilter.value = state.category;
-
-  statusFilter.replaceChildren();
-
-  const statusAll = document.createElement("option");
-  statusAll.value = "all";
-  statusAll.textContent = "Tất cả";
-  statusFilter.append(statusAll);
-
-  getStatuses().forEach((status) => {
-    const option = document.createElement("option");
-
-    option.value = status;
-    option.textContent = statusLabels[status] ?? status;
-
-    statusFilter.append(option);
-  });
-
-  statusFilter.value = state.status;
 }
 
 function renderLoading() {
@@ -326,64 +353,56 @@ function debounce(fn, delay = 300) {
 }
 
 function createRecordId() {
-  const randomPart = Math.floor(Math.random() * 900) + 100;
+  const numbers = state.records.map((record) => {
+    const match = record.id.match(/(\d+)$/);
 
-  return `PC-${new Date().getFullYear()}-${randomPart}`;
-}
+    return match ? Number(match[1]) : 0;
+  });
 
-function resetForm(form) {
-  form.reset();
-}
+  const nextNumber = Math.max(0, ...numbers) + 1;
 
-function handleDelete(id) {
-  const confirmed = window.confirm("Bạn có chắc muốn xóa bản ghi này không?");
-
-  if (!confirmed) {
-    return;
-  }
-
-  state.records = state.records.filter((record) => record.id !== id);
-
-  saveRecords(state.records);
-
-  render();
+  return `BK-2607-${String(nextNumber).padStart(3, "0")}`;
 }
 
 function handleAddRecord(form) {
   const formData = new FormData(form);
 
-  const trader = String(formData.get("trader") ?? "").trim();
+  const title = String(formData.get("title") ?? "").trim();
+
+  const author = String(formData.get("author") ?? "").trim();
 
   const category = String(formData.get("category") ?? "").trim();
 
-  const status = String(formData.get("status") ?? "").trim();
+  const status = String(formData.get("status") ?? "");
 
-  const weight = Number(formData.get("weight"));
+  const views = Number(formData.get("views"));
 
-  const amount = Number(formData.get("amount"));
+  const price = Number(formData.get("price"));
 
   const date = String(formData.get("date") ?? "");
 
   if (
-    !trader ||
+    !title ||
+    !author ||
     !category ||
     !status ||
     !date ||
-    !Number.isFinite(weight) ||
-    weight <= 0 ||
-    !Number.isFinite(amount) ||
-    amount < 0
+    !Number.isFinite(views) ||
+    views < 0 ||
+    !Number.isFinite(price) ||
+    price < 0
   ) {
     return;
   }
 
   const newRecord = {
     id: createRecordId(),
-    trader,
+    title,
+    author,
     category,
     status,
-    weight,
-    amount,
+    views,
+    price,
     date,
   };
 
@@ -391,9 +410,66 @@ function handleAddRecord(form) {
 
   saveRecords(state.records);
 
-  resetForm(form);
+  form.reset();
 
   render();
+}
+
+function resetForm(form) {
+  form.reset();
+}
+
+function handleDelete(id) {
+  const record = state.records.find((item) => item.id === id);
+
+  if (!record) {
+    return;
+  }
+
+  const confirmed = window.confirm(
+    `Bạn có chắc muốn xóa "${record.title}" không?`,
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  state.records = state.records.filter((item) => item.id !== id);
+
+  saveRecords(state.records);
+
+  render();
+}
+
+async function restoreRecords() {
+  state.loading = true;
+  state.error = null;
+
+  render();
+
+  try {
+    const response = await fetch("./data/records.json");
+
+    if (!response.ok) {
+      throw new Error(`Máy chủ trả về ${response.status}`);
+    }
+
+    const records = await response.json();
+
+    if (!Array.isArray(records)) {
+      throw new Error("Dữ liệu JSON không đúng định dạng.");
+    }
+
+    state.records = records;
+
+    saveRecords(state.records);
+  } catch (error) {
+    state.error = `Không thể khôi phục dữ liệu: ${error.message}`;
+  } finally {
+    state.loading = false;
+
+    render();
+  }
 }
 
 function bindEvents() {
@@ -411,6 +487,9 @@ function bindEvents() {
 
   const restoreButton = document.getElementById("restore-records");
 
+  /*
+   * SEARCH + DEBOUNCE
+   */
   searchInput.addEventListener(
     "input",
     debounce((event) => {
@@ -420,30 +499,45 @@ function bindEvents() {
     }, 300),
   );
 
+  /*
+   * CATEGORY
+   */
   categoryFilter.addEventListener("change", (event) => {
     state.category = event.target.value;
 
     render();
   });
 
+  /*
+   * STATUS
+   */
   statusFilter.addEventListener("change", (event) => {
     state.status = event.target.value;
 
     render();
   });
 
+  /*
+   * SORT
+   */
   sortSelect.addEventListener("change", (event) => {
     state.sort = event.target.value;
 
     render();
   });
 
+  /*
+   * ADD
+   */
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     handleAddRecord(form);
   });
 
+  /*
+   * DELETE
+   */
   recordsBody.addEventListener("click", (event) => {
     const button = event.target.closest("[data-action='delete']");
 
@@ -454,48 +548,24 @@ function bindEvents() {
     handleDelete(button.dataset.id);
   });
 
-  restoreButton.addEventListener("click", async () => {
-    state.loading = true;
-    state.error = null;
-
-    render();
-
-    try {
-      const response = await fetch("./data/records.json");
-
-      if (!response.ok) {
-        throw new Error(`Máy chủ trả về ${response.status}`);
-      }
-
-      const records = await response.json();
-
-      if (!Array.isArray(records)) {
-        throw new Error("Dữ liệu JSON không đúng định dạng.");
-      }
-
-      state.records = records;
-
-      saveRecords(state.records);
-    } catch (error) {
-      state.error = `Không thể khôi phục dữ liệu: ${error.message}`;
-    } finally {
-      state.loading = false;
-
-      render();
-    }
+  /*
+   * RESTORE
+   */
+  restoreButton.addEventListener("click", () => {
+    restoreRecords();
   });
 }
 
 export async function initRecords() {
-  const root = document.getElementById("records-body");
+  const recordsBody = document.getElementById("records-body");
 
-  if (!root) {
+  if (!recordsBody) {
     return;
   }
 
   bindEvents();
 
-  // Trạng thái loading được render trước khi fetch
+  // Nhiệm vụ 1: loading trước
   render();
 
   try {
