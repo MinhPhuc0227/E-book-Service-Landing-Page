@@ -1,0 +1,302 @@
+[
+  {
+    "id": "BK-2607-001",
+    "title": "Đắc Nhân Tâm",
+    "author": "Dale Carnegie",
+    "category": "Kỹ năng sống",
+    "status": "available",
+    "views": 12540,
+    "price": 79000,
+    "date": "2026-07-26"
+  },
+  {
+    "id": "BK-2607-002",
+    "title": "Nhà Giả Kim",
+    "author": "Paulo Coelho",
+    "category": "Văn học",
+    "status": "available",
+    "views": 11320,
+    "price": 69000,
+    "date": "2026-07-25"
+  },
+  {
+    "id": "BK-2607-003",
+    "title": "Tuổi Trẻ Đáng Giá Bao Nhiêu",
+    "author": "Rosie Nguyễn",
+    "category": "Phát triển bản thân",
+    "status": "available",
+    "views": 9840,
+    "price": 59000,
+    "date": "2026-07-24"
+  },
+  {
+    "id": "BK-2607-004",
+    "title": "Harry Potter và Hòn Đá Phù Thủy",
+    "author": "J. K. Rowling",
+    "category": "Fantasy",
+    "status": "available",
+    "views": 8760,
+    "price": 99000,
+    "date": "2026-07-23"
+  },
+  {
+    "id": "BK-2607-005",
+    "title": "Cà Phê Cùng Tony",
+    "author": "Tony Buổi Sáng",
+    "category": "Kinh doanh",
+    "status": "limited",
+    "views": 8120,
+    "price": 65000,
+    "date": "2026-07-22"
+  },
+  {
+    "id": "BK-2607-006",
+    "title": "Muôn Kiếp Nhân Sinh",
+    "author": "Nguyên Phong",
+    "category": "Tâm lý",
+    "status": "available",
+    "views": 7960,
+    "price": 89000,
+    "date": "2026-07-21"
+  },
+  {
+    "id": "BK-2607-007",
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "category": "Phát triển bản thân",
+    "status": "available",
+    "views": 7540,
+    "price": 119000,
+    "date": "2026-07-20"
+  },
+  {
+    "id": "BK-2607-008",
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "category": "Lịch sử",
+    "status": "available",
+    "views": 7210,
+    "price": 129000,
+    "date": "2026-07-19"
+  },
+  {
+    "id": "BK-2607-009",
+    "title": "Thép Đã Tôi Thế Đấy",
+    "author": "Nikolai Ostrovsky",
+    "category": "Văn học",
+    "status": "unavailable",
+    "views": 6980,
+    "price": 55000,
+    "date": "2026-07-18"
+  },
+  {
+    "id": "BK-2607-010",
+    "title": "Dế Mèn Phiêu Lưu Ký",
+    "author": "Tô Hoài",
+    "category": "Thiếu nhi",
+    "status": "available",
+    "views": 6750,
+    "price": 45000,
+    "date": "2026-07-17"
+  },
+  {
+    "id": "BK-2607-011",
+    "title": "Tư Duy Nhanh Và Chậm",
+    "author": "Daniel Kahneman",
+    "category": "Tâm lý",
+    "status": "available",
+    "views": 6540,
+    "price": 135000,
+    "date": "2026-07-16"
+  },
+  {
+    "id": "BK-2607-012",
+    "title": "Đi Tìm Lẽ Sống",
+    "author": "Viktor E. Frankl",
+    "category": "Tâm lý",
+    "status": "available",
+    "views": 6320,
+    "price": 72000,
+    "date": "2026-07-15"
+  },
+  {
+    "id": "BK-2607-013",
+    "title": "Lược Sử Vạn Vật",
+    "author": "Bill Bryson",
+    "category": "Khoa học",
+    "status": "available",
+    "views": 6180,
+    "price": 109000,
+    "date": "2026-07-14"
+  },
+  {
+    "id": "BK-2607-014",
+    "title": "Think and Grow Rich",
+    "author": "Napoleon Hill",
+    "category": "Kinh doanh",
+    "status": "available",
+    "views": 6040,
+    "price": 85000,
+    "date": "2026-07-13"
+  },
+  {
+    "id": "BK-2607-015",
+    "title": "Không Gia Đình",
+    "author": "Hector Malot",
+    "category": "Văn học",
+    "status": "available",
+    "views": 5890,
+    "price": 62000,
+    "date": "2026-07-12"
+  },
+  {
+    "id": "BK-2607-016",
+    "title": "Sherlock Holmes Toàn Tập",
+    "author": "Arthur Conan Doyle",
+    "category": "Trinh thám",
+    "status": "available",
+    "views": 5750,
+    "price": 145000,
+    "date": "2026-07-11"
+  },
+  {
+    "id": "BK-2607-017",
+    "title": "Bố Già",
+    "author": "Mario Puzo",
+    "category": "Văn học",
+    "status": "available",
+    "views": 5580,
+    "price": 95000,
+    "date": "2026-07-10"
+  },
+  {
+    "id": "BK-2607-018",
+    "title": "7 Thói Quen Hiệu Quả",
+    "author": "Stephen R. Covey",
+    "category": "Kỹ năng sống",
+    "status": "available",
+    "views": 5420,
+    "price": 99000,
+    "date": "2026-07-09"
+  },
+  {
+    "id": "BK-2607-019",
+    "title": "Mắt Biếc",
+    "author": "Nguyễn Nhật Ánh",
+    "category": "Văn học",
+    "status": "limited",
+    "views": 5290,
+    "price": 68000,
+    "date": "2026-07-08"
+  },
+  {
+    "id": "BK-2607-020",
+    "title": "Cho Tôi Xin Một Vé Đi Tuổi Thơ",
+    "author": "Nguyễn Nhật Ánh",
+    "category": "Thiếu nhi",
+    "status": "available",
+    "views": 5140,
+    "price": 58000,
+    "date": "2026-07-07"
+  },
+  {
+    "id": "BK-2607-021",
+    "title": "Những Người Khốn Khổ",
+    "author": "Victor Hugo",
+    "category": "Văn học",
+    "status": "available",
+    "views": 4980,
+    "price": 125000,
+    "date": "2026-07-06"
+  },
+  {
+    "id": "BK-2607-022",
+    "title": "Thói Quen Tối Ưu",
+    "author": "Gretchen Rubin",
+    "category": "Phát triển bản thân",
+    "status": "available",
+    "views": 4760,
+    "price": 88000,
+    "date": "2026-07-05"
+  },
+  {
+    "id": "BK-2607-023",
+    "title": "Cha Giàu Cha Nghèo",
+    "author": "Robert Kiyosaki",
+    "category": "Kinh doanh",
+    "status": "available",
+    "views": 4610,
+    "price": 97000,
+    "date": "2026-07-04"
+  },
+  {
+    "id": "BK-2607-024",
+    "title": "Cây Cam Ngọt Của Tôi",
+    "author": "José Mauro de Vasconcelos",
+    "category": "Văn học",
+    "status": "available",
+    "views": 4480,
+    "price": 73000,
+    "date": "2026-07-03"
+  },
+  {
+    "id": "BK-2607-025",
+    "title": "Thế Giới Phẳng",
+    "author": "Thomas L. Friedman",
+    "category": "Kinh doanh",
+    "status": "unavailable",
+    "views": 4250,
+    "price": 115000,
+    "date": "2026-07-02"
+  },
+  {
+    "id": "BK-2607-026",
+    "title": "Totto-Chan Bên Cửa Sổ",
+    "author": "Tetsuko Kuroyanagi",
+    "category": "Thiếu nhi",
+    "status": "available",
+    "views": 4080,
+    "price": 67000,
+    "date": "2026-07-01"
+  },
+  {
+    "id": "BK-2607-027",
+    "title": "Kafka Bên Bờ Biển",
+    "author": "Haruki Murakami",
+    "category": "Văn học",
+    "status": "available",
+    "views": 3920,
+    "price": 102000,
+    "date": "2026-06-30"
+  },
+  {
+    "id": "BK-2607-028",
+    "title": "Làm Bạn Với Bầu Trời",
+    "author": "Nguyễn Nhật Ánh",
+    "category": "Thiếu nhi",
+    "status": "available",
+    "views": 3780,
+    "price": 61000,
+    "date": "2026-06-29"
+  },
+  {
+    "id": "BK-2607-029",
+    "title": "Nghệ Thuật Tinh Tế Của Việc Đếch Quan Tâm",
+    "author": "Mark Manson",
+    "category": "Kỹ năng sống",
+    "status": "limited",
+    "views": 3650,
+    "price": 79000,
+    "date": "2026-06-28"
+  },
+  {
+    "id": "BK-2607-030",
+    "title": "Tuần Làm Việc 4 Giờ",
+    "author": "Timothy Ferriss",
+    "category": "Kinh doanh",
+    "status": "available",
+    "views": 3510,
+    "price": 108000,
+    "date": "2026-06-27"
+  }
+]

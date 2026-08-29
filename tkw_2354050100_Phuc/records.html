@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dữ liệu giao dịch - BOOKLY</title>
+
+    <meta
+      name="description"
+      content="Danh sách dữ liệu giao dịch được tải động từ JSON."
+    />
+
+    <link rel="stylesheet" href="./dist/output.css" />
+
+    <!-- Khởi tạo dark mode trước khi trình duyệt render -->
+    <script>
+      (() => {
+        const saved = localStorage.getItem("theme");
+
+        const dark = saved
+          ? saved === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        document.documentElement.classList.toggle("dark", dark);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="nav-sentinel" aria-hidden="true"></div>
+
+    <header class="site-header sticky top-0 z-50">
+      <nav
+        aria-label="Thanh điều hướng chính"
+        class="mx-auto flex h-[72px] w-full max-w-[1280px] items-center justify-between gap-4 px-5 py-4 lg:h-[85px] lg:gap-8 lg:px-5 lg:py-6"
+      >
+        <!-- Logo -->
+        <a
+          href="index.html"
+          aria-label="BOOKLY - Trang chủ"
+          class="flex h-9 w-[155px] shrink-0 items-center gap-3"
+        >
+          <img
+            src="assets/img/bookly-logo.png"
+            alt="BOOKLY"
+            class="h-9 w-auto object-contain"
+          />
+
+          <span class="font-body text-2xl font-semibold leading-9">
+            BOOKLY
+          </span>
+        </a>
+
+        <!-- Desktop menu -->
+        <ul class="hidden flex-1 items-center gap-8 lg:flex">
+          <li>
+            <a
+              href="index.html#hero"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Trang chủ
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="index.html#tinh-nang"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Tính năng
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="index.html#so-lieu"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Về BOOKLY
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="index.html#cam-nhan"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Đánh giá
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="pricing.html"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Gói thành viên
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="contact.html"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Liên hệ
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="index.html#faq"
+              class="font-body text-base font-medium leading-6 transition-colors hover:text-brand-600"
+            >
+              Câu hỏi thường gặp
+            </a>
+          </li>
+        </ul>
+
+        <!-- Dark mode -->
+        <button
+          id="theme-toggle"
+          type="button"
+          role="switch"
+          aria-checked="false"
+          aria-label="Chuyển sang chế độ tối"
+          class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line text-lg transition-colors hover:bg-surface-alt focus:outline-none focus:ring-2 focus:ring-brand-600"
+        >
+          <span data-theme-icon aria-hidden="true">☾</span>
+        </button>
+
+        <!-- Mobile -->
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line lg:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Mở menu"
+        >
+          <span aria-hidden="true" class="text-xl">☰</span>
+        </button>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobile-menu"
+        class="hidden border-t border-line bg-surface dark:border-line-invert dark:bg-surface-dark lg:hidden"
+      >
+        <ul class="mx-auto max-w-[1280px] px-5 py-4">
+          <li>
+            <a
+              href="index.html#hero"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium hover:bg-surface-alt hover:text-brand-600"
+            >
+              Trang chủ
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="pricing.html"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium hover:bg-surface-alt hover:text-brand-600"
+            >
+              Gói thành viên
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="contact.html"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium hover:bg-surface-alt hover:text-brand-600"
+            >
+              Liên hệ
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="index.html#faq"
+              class="block rounded-lg px-4 py-3 font-body text-base font-medium hover:bg-surface-alt hover:text-brand-600"
+            >
+              Câu hỏi thường gặp
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="max-w-3xl">
+          <p class="eyebrow">Dữ liệu</p>
+
+          <h1 class="mt-4 text-3xl font-extrabold sm:text-4xl">
+            Danh sách giao dịch
+          </h1>
+
+          <p class="mt-4 text-lg text-muted">
+            Dữ liệu được tải từ JSON và có thể tìm kiếm, lọc, sắp xếp, thêm hoặc
+            xóa.
+          </p>
+        </div>
+
+        <!-- Search + filter -->
+        <div class="card mt-10">
+          <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <label class="field-label" for="record-search">
+                Tìm kiếm người giao dịch
+              </label>
+
+              <input
+                id="record-search"
+                type="search"
+                class="field-input"
+                placeholder="Ví dụ: Chú Bảy"
+                autocomplete="off"
+              />
+            </div>
+
+            <div>
+              <label class="field-label" for="category-filter">
+                Nhóm hàng
+              </label>
+
+              <select id="category-filter" class="field-input">
+                <option value="all">Tất cả</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label" for="status-filter">
+                Trạng thái
+              </label>
+
+              <select id="status-filter" class="field-input">
+                <option value="all">Tất cả</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label" for="sort-select"> Sắp xếp </label>
+
+              <select id="sort-select" class="field-input">
+                <option value="date-desc">Ngày mới nhất</option>
+                <option value="date-asc">Ngày cũ nhất</option>
+                <option value="amount-desc">Số tiền cao nhất</option>
+                <option value="amount-asc">Số tiền thấp nhất</option>
+                <option value="weight-desc">Khối lượng cao nhất</option>
+                <option value="weight-asc">Khối lượng thấp nhất</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add record -->
+        <form id="record-form" class="card mt-6" novalidate>
+          <div>
+            <h2 class="text-xl font-bold">Thêm bản ghi</h2>
+
+            <p class="mt-1 text-sm text-muted">
+              Nhập dữ liệu mới để thêm vào danh sách.
+            </p>
+          </div>
+
+          <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div>
+              <label class="field-label" for="record-trader">
+                Người giao dịch
+              </label>
+
+              <input
+                id="record-trader"
+                name="trader"
+                type="text"
+                class="field-input"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="field-label" for="record-category">
+                Nhóm hàng
+              </label>
+
+              <input
+                id="record-category"
+                name="category"
+                type="text"
+                class="field-input"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="field-label" for="record-status">
+                Trạng thái
+              </label>
+
+              <select
+                id="record-status"
+                name="status"
+                class="field-input"
+                required
+              >
+                <option value="moi">Mới</option>
+                <option value="dang-xu-ly">Đang xử lý</option>
+                <option value="da-chot">Đã chốt</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label" for="record-weight">
+                Khối lượng
+              </label>
+
+              <input
+                id="record-weight"
+                name="weight"
+                type="number"
+                min="1"
+                class="field-input"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="field-label" for="record-amount"> Số tiền </label>
+
+              <input
+                id="record-amount"
+                name="amount"
+                type="number"
+                min="0"
+                class="field-input"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="field-label" for="record-date"> Ngày </label>
+
+              <input
+                id="record-date"
+                name="date"
+                type="date"
+                class="field-input"
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-6">
+            Thêm bản ghi
+          </button>
+        </form>
+
+        <!-- Result -->
+        <div class="mt-8">
+          <div class="mb-4 flex items-center justify-between gap-4">
+            <h2 class="text-xl font-bold">Danh sách</h2>
+
+            <button id="restore-records" type="button" class="btn btn-ghost">
+              Khôi phục dữ liệu mẫu
+            </button>
+          </div>
+
+          <div id="records-status" role="status" aria-live="polite"></div>
+
+          <div
+            class="mt-4 overflow-x-auto rounded-card border border-line dark:border-line-invert"
+          >
+            <table class="min-w-[900px] w-full border-collapse text-left">
+              <thead class="bg-surface-alt">
+                <tr class="border-b border-line dark:border-line-invert">
+                  <th class="p-4 font-semibold">ID</th>
+                  <th class="p-4 font-semibold">Người giao dịch</th>
+                  <th class="p-4 font-semibold">Nhóm hàng</th>
+                  <th class="p-4 font-semibold">Trạng thái</th>
+                  <th class="p-4 font-semibold">Khối lượng</th>
+                  <th class="p-4 font-semibold">Số tiền</th>
+                  <th class="p-4 font-semibold">Ngày</th>
+                  <th class="p-4 font-semibold">Thao tác</th>
+                </tr>
+              </thead>
+
+              <tbody id="records-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Template: KHÔNG nối dữ liệu vào innerHTML -->
+    <template id="record-row-template">
+      <tr class="border-b border-line dark:border-line-invert">
+        <td data-cell="id" class="p-4"></td>
+        <td data-cell="trader" class="p-4"></td>
+        <td data-cell="category" class="p-4"></td>
+        <td data-cell="status" class="p-4"></td>
+        <td data-cell="weight" class="p-4"></td>
+        <td data-cell="amount" class="p-4"></td>
+        <td data-cell="date" class="p-4"></td>
+        <td data-cell="actions" class="p-4"></td>
+      </tr>
+    </template>
+
+    <button
+      id="to-top"
+      type="button"
+      class="fixed bottom-6 right-6 z-40 hidden size-12 rounded-full bg-brand-600 text-white shadow-lg"
+      aria-label="Lên đầu trang"
+    >
+      ↑
+    </button>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
